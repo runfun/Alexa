@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# ========== rules ========== # Sync rules.
+# Need two arguments:
+#   $1 source
+#   $2 target
+# Note:
+#   `source` and `target` must be the same type.
+#   Meaning  both are file types or dir types.
+sync_rule $source_prefix/.vimrc $target_prefix/vim/.vimrc
+sync_rule $source_prefix/.zshrc $target_prefix/zsh/.zshrc
+sync_rule $source_prefix/.config/bspwm $target_prefix
+sync_rule $source_prefix/.config/sxhkd $target_prefix
+sync_rule $source_prefix/.config/picom $target_prefix

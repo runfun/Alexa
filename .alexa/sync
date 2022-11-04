@@ -1,0 +1,99 @@
+#!/bin/sh
+
+# ========== prefixs ==========
+readonly source_prefix="$HOME"
+readonly target_prefix="$HOME/Alexa"
+
+
+# ========== global container ==========
+SOURCES=[]		# source files
+TARGETS=[]		# target files
+
+
+# =========== error check ==========
+# File exists or not
+# Need one argument:
+#	$1 file_or_dir
+exist(){
+	if [ -e $1 ]; then
+		return 0
+	else
+		# echo "File or dir $1 not exists." >&2
+		return 1
+	fi
+}
+
+
+# ========== rule paser ==========
+# Paser the rule
+# Need two arguments:
+#	$1 source
+#	$2 target
+# Note:
+#	`source` and `target` must be the same type.
+#	Meaning  both are file types or dir types.
+sync_rule(){
+	if [ $# -ne 2 ]; then
+		echo "Rule error:\"$0 $*\"" >&2
+		return 1
+	else
+		exist $1
+		if [ $? -eq 1 ]; then
+			# echo "Rule error\"$0 $*\", skip." >&2
+			echo "File \"$1\" not exists, skip" >&2
+		else
+			index=${#SOURCES[@]}
+			SOURCES[$index]=$1
+			TARGETS[$index]=$2
+			return 0
+		fi
+	fi
+}
+
+
+# ========== sync ==========
+# Sync file or dir
+sync(){
+	counts=${#SOURCES[@]}
+	index=1
+	while [ $index -lt $counts ]
+	do
+		if [ -f ${SOURCES[$index]} ]; then
+			sync_file ${SOURCES[$index]} ${TARGETS[$index]}
+		elif [ -d ${SOURCES[$index]} ]; then
+			sync_dir ${SOURCES[$index]} ${TARGETS[$index]}
+		else
+			echo "Unknown type" >&2
+		fi
+		index=`expr $index + 1`
+	done
+}
+
+sync_file(){
+	exist $2
+	if [ $? -eq 0 ]; then
+		md5_s=`md5sum $1 | awk '{print $1}'`
+		md5_t=`md5sum $2 | awk '{print $1}'`
+		if [ $md5_s = $md5_t ]; then
+			echo "Target file \"$2\" already newest. No need sync, skip"
+		else
+			echo "Source file \"$1\" changed. Now sync..."
+			`install -C $1 $2 &> /dev/null`
+		fi
+	else
+		echo "Target file \"$2\" not exists. Create new..."
+		`install -D $1 $2 &> /dev/null`
+	fi
+}
+
+sync_dir() {
+	echo "sync_dir \"$1\"..."
+	`cp -ru $1 $2`
+
+}
+
+# ========== main ==========
+# logic code
+source ./sync_rule
+sync
+echo OK
