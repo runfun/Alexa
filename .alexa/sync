@@ -94,6 +94,6 @@ sync_dir() {
 
 # ========== main ==========
 # logic code
-source ./sync_rule
+source `dirname $0`/sync_rule
 sync
 echo OK

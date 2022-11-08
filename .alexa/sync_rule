@@ -12,3 +12,6 @@ sync_rule $source_prefix/.zshrc $target_prefix/zsh/.zshrc
 sync_rule $source_prefix/.config/bspwm $target_prefix
 sync_rule $source_prefix/.config/sxhkd $target_prefix
 sync_rule $source_prefix/.config/picom $target_prefix
+sync_rule $source_prefix/.config/helix $target_prefix
+sync_rule $source_prefix/.config/polybar $target_prefix
+sync_rule $source_prefix/.config/terminator $target_prefix

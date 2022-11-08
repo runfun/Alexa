@@ -53,6 +53,14 @@ The tool list that I used.
 ### vim
 [vim](https://github.com/vim/vim)
 
+### helix
+> A post-modern modal text editor.
+[helix](https://github.com/helix-editor/helix)
+
+## File Browser
+### ranger
+> A VIM-inspired filemanager for the console
+[ranger](A VIM-inspired filemanager for the console)
 
 ## Tools
 ### exa

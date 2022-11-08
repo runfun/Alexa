@@ -105,3 +105,4 @@ source $ZSH/oh-my-zsh.sh
 alias ls="exa"
 alias v="vim"
 alias vi="vim"
+alias hx="helix"

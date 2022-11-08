@@ -2,6 +2,7 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 /home/runfun/.config/polybar/launch.sh
+picom -b
 
 bspc monitor -d 1 2 3 4 5
 

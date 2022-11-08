@@ -36,10 +36,11 @@ filetype indent on
 inoremap jk <ESC>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 " Shift+Delete	Cut text and copy it in the clipboard
 " Ctrl+Insert	Copy text in the clipboard
 " Shift+Insert	Paste text from the clipboard into a document
-
 
 " themes and fonts
 set enc=utf-8
@@ -63,6 +64,7 @@ call plug#end()
 colorscheme everforest
 
 " NerdTree
+nnoremap <F2> :NERDTree<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 
 " youcompleteme

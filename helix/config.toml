@@ -1,0 +1,6 @@
+[editor]
+line-number = "relative"
+
+[keys.insert]
+j = { k = "normal_mode" } # Map "jk" to normal
+
