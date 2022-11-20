@@ -101,4 +101,8 @@
 `exa` is good enough for me. But it seems to have stopped maintenance.
 Instead, you can choice `LSD`, another powerful tool to replacement `ls`.
 
+### bat🦇
 
+> A cat(1) clone with wings.
+
+[bat](https://github.com/sharkdp/bat)
